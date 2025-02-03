@@ -9,7 +9,7 @@ namespace eAppointmentServer.Application.Extensions
         {
             services.AddMediatR(configuration =>
             {
-                configuration.RegisterServicesFromAssembly(typeof(DomainAssembly).Assembly);
+                configuration.RegisterServicesFromAssembly(typeof(ApplicationAssembly).Assembly);
             });
             return services;
         }

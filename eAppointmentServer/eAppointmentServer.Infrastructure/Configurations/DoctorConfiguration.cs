@@ -1,4 +1,5 @@
 ﻿using eAppointmentServer.Domain.Entities;
+using eAppointmentServer.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,6 +11,12 @@ internal sealed class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
     {
         builder.Property(d => d.FirstName).HasColumnType("varchar(50)");
         builder.Property(d => d.LastName).HasColumnType("varchar(50)");
-        
+
+        builder.Property(x => x.Department)
+            .HasConversion(v => v.Value, v => DepartmentEnum.FromValue(v))
+            .HasColumnName("Department");
+
+
+
     }
 }

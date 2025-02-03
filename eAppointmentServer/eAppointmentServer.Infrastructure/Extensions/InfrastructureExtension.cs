@@ -12,8 +12,7 @@ namespace eAppointmentServer.Infrastructure.Extensions
 {
     public static class InfrastructureExtension
     {
-
-        public static IServiceCollection AddInfrastructure(this ServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
