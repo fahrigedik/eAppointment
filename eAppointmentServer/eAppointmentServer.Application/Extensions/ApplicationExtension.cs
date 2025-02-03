@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eAppointmentServer.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace eAppointmentServer.Application.Extensions
@@ -13,7 +9,7 @@ namespace eAppointmentServer.Application.Extensions
         {
             services.AddMediatR(configuration =>
             {
-                configuration.RegisterServicesFromAssembly(typeof(ApplicationExtension).Assembly);
+                configuration.RegisterServicesFromAssembly(typeof(DomainAssembly).Assembly);
             });
             return services;
         }
