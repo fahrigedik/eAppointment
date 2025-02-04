@@ -51,10 +51,10 @@
           <td>{{ item.firstName }} {{ item.lastName }}</td>
           <td>{{ item.department.name }}</td>
           <td>
-            <button class="btn btn-sm btn-outline-primary me-1" title="Edit">
+            <button class="btn btn-sm btn-outline-primary me-1" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="beforeEdit(item)">
               <i class="fa-solid fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-outline-danger" title="Delete">
+            <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="delete(item.id)">
               <i class="fa-solid fa-trash"></i>
             </button>
           </td>
@@ -109,4 +109,44 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> 
+
+
+
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Doctor Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form #updateDoctorForm="ngForm" formValidate autocomplete="off">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" ngModel [(ngModel)]="updateModel.firstName" class="form-control" placeholder="Enter First Name">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" ngModel  [(ngModel)]="updateModel.lastName" class="form-control" placeholder="Enter Last Name">
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select class="form-control" ngModel name="department" [(ngModel)]="updateModel.department" >
+                        <option [ngValue]="null" disabled selected>
+                            Select..
+                          </option>
+                        @for (item of departments; track $index) {
+                        <option [value]="item.value">
+                            {{ item.name }}
+                        </option>
+                        }
+                    </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-dark w-100" (click)="update(updateDoctorForm)">Save</button>
+              </div>
+        </form>
+      </div>
+    </div>

@@ -6,6 +6,7 @@ import { departments } from '../../constants';
 import { FormsModule, NgForm } from '@angular/forms';
 import { FormValidateDirective } from 'form-validate-angular';
 import { ResultModel } from '../../models/result.model';
+import { SwalService } from '../../services/swal.service';
 
 @Component({
   selector: 'app-doctors',
@@ -17,8 +18,9 @@ export class DoctorsComponent implements OnInit {
   doctors: DoctorModel[] = [];
   departments : DepartmentModel[] = departments;
   createModel : DoctorModel = new DoctorModel();
+  updateModel : DoctorModel = new DoctorModel();
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, private swal : SwalService) {}
 
   ngOnInit(): void {
     this.getAll();
@@ -36,10 +38,34 @@ export class DoctorsComponent implements OnInit {
     {
       this.http.post<ResultModel<string>>('Doctors/CreateDoctor', this.createModel, (res) => {
         console.log(res);
+        this.swal.callToast('Doctor is created','success');
         this.getAll();
       });
     }
   }
 
+
+  delete(id : string)
+  {
+    this.swal.callSwal('Are you sure?','Do you want to delete this doctor?','Yes',() => {
+      this.http.post<ResultModel<string>>('Doctors/DeleteDoctor', {id : id}, (res) => {
+        this.swal.callToast('Doctor is deleted','success');
+        this.getAll();
+      });
+    });
+  }
+  beforeEdit(selectedDoctor : DoctorModel)
+  {
+    this.updateModel = selectedDoctor;
+  }
+  update(form : NgForm)
+  {
+    this.swal.callSwal('Are you sure?','Do you want to update this doctor?','Yes',() => {
+      this.http.post<ResultModel<string>>('Doctors/UpdateDoctor', this.updateModel , (res) => {
+        this.swal.callToast('Doctor is updated','success');
+        this.getAll();
+      });
+    });
+  }
 
 }
