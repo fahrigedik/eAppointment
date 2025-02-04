@@ -19,9 +19,9 @@ namespace eAppointmentServer.Infrastructure.Services
                 new Claim("UserName", user.UserName ?? string.Empty)
             };
 
-            DateTime expires = DateTime.Now.AddMinutes(1);
+            DateTime expires = DateTime.Now.AddDays(1);
 
-            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes("FahriGedikSecurityKey!"));
+            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes("FahriGedikSecurityKeyFahriGedikSecurityKeyFahriGedikSecurityKeyFahriGedikSecurityKeyFahriGedikSecurityKeyFahriGedikSecurityKey"));
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha512);
 
             JwtSecurityToken securityToken = new(
