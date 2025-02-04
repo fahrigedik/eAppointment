@@ -18,9 +18,7 @@ export class HttpService {
     this.http.post<ResultModel<T>>(`${baseApiUrl}${apiUrl}`, body).subscribe({
       next: (res) => {
         console.log(res);
-        if( res.data !== undefined || res.data !== null){
-          callBack(res);
-        }
+        callBack(res);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

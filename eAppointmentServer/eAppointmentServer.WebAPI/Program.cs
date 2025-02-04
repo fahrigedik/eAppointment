@@ -1,3 +1,4 @@
+using eAppointmentServer.Application;
 using eAppointmentServer.Application.Extensions;
 using eAppointmentServer.Infrastructure.Extensions;
 
@@ -14,7 +15,6 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader();
         });
 });
-
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 

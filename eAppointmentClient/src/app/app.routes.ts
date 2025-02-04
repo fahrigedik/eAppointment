@@ -4,6 +4,7 @@ import { LayoutsComponent } from './components/layouts/layouts.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { authGuard } from './guards/auth.guard';
+import { DoctorsComponent } from './components/doctors/doctors.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,10 @@ export const routes: Routes = [
         path: '',
         component: HomeComponent,
       },
+      {
+        path:'doctors',
+        component: DoctorsComponent,
+      }
     ],
   },
   {

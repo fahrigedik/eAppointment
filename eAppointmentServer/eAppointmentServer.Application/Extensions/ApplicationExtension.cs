@@ -1,5 +1,6 @@
-﻿using eAppointmentServer.Domain;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
+
 
 namespace eAppointmentServer.Application.Extensions
 {
@@ -7,93 +8,12 @@ namespace eAppointmentServer.Application.Extensions
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(ApplicationAssembly).Assembly);
+
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(typeof(ApplicationAssembly).Assembly);
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             return services;
         }
