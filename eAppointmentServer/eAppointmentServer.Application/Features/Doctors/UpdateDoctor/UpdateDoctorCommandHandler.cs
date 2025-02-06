@@ -22,7 +22,7 @@ internal sealed class UpdateDoctorCommandHandler(
             return Result<string>.Failure("Doctor Not Found");
         }
 
-        mapper.Map(request, doctor);
+        var updatedDoctor = mapper.Map(request, doctor);
         doctorRepository.Update(doctor);
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

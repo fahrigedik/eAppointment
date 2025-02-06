@@ -1,0 +1,165 @@
+<div class="mt-2">
+    <h3>Patients Page</h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li
+          class="breadcrumb-item active"
+          routerLink="/patients"
+          aria-current="page"
+        >
+          Patients
+        </li>
+      </ol>
+    </nav>
+  </div>
+  
+  <div class="mt-3">
+    <div class="mt-3">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xl-9 col-lg-8 col-md-5 col sm-12 col-12">
+            <button  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="fa-solid fa-plus me-1"></i>
+              <span>Add Patient</span>
+            </button>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col sm-12 col-12">
+            <input
+            [(ngModel)]="search"
+              type="search"
+              class="form-control"
+              placeholder="Search Doctor.."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group mt-1">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Identity Number</th>
+            <th>City</th>
+            <th>Town</th>
+            <th>Full Address</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of patients | patient : search; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.firstName }} {{ item.lastName }}</td>
+            <td>{{ item.identityNumber }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.town }}</td>
+            <td>{{ item.fullAddress }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-1" title="Edit" data-bs-toggle="modal" data-bs-target="#exampleModal2" (click)="beforeEdit(item)">
+                <i class="fa-solid fa-edit"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" title="Delete" (click)="delete(item.id)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+  <!-- Button trigger modal 
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+    </button>-->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Patient Form</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form #addPatientForm="ngForm" formValidate autocomplete="off">
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" name="firstName" ngModel [(ngModel)]="createModel.firstName" class="form-control" placeholder="Enter First Name">
+                  </div>
+                  <div class="form-group">
+                      <label>Last Name</label>
+                      <input type="text" name="lastName" ngModel  [(ngModel)]="createModel.lastName" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label>Identity Number</label>
+                    <input type="text" name="identityNumber" ngModel  [(ngModel)]="createModel.identityNumber" class="form-control" placeholder="Enter Identity Number">
+                  </div>
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" name="city" ngModel  [(ngModel)]="createModel.city" class="form-control" placeholder="Enter City">
+                  </div>
+                  <div class="form-group">
+                    <label>Town</label>
+                    <input type="text" name="town" ngModel  [(ngModel)]="createModel.town" class="form-control" placeholder="Enter Town">
+                  </div>
+                  <div class="form-group">
+                    <label>Full Address</label>
+                    <input type="text" name="fullAddress" ngModel  [(ngModel)]="createModel.fullAddress" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-dark w-100" (click)="add(addPatientForm)">Save</button>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+  
+  
+  
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Patient Form</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form #updatePatientForm="ngForm" formValidate autocomplete="off">
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" name="firstName" ngModel [(ngModel)]="updateModel.firstName" class="form-control" placeholder="Enter First Name">
+                  </div>
+                  <div class="form-group">
+                      <label>Last Name</label>
+                      <input type="text" name="lastName" ngModel  [(ngModel)]="updateModel.lastName" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label>Identity Number</label>
+                    <input type="text" name="identityNumber" ngModel  [(ngModel)]="updateModel.identityNumber" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" name="city" ngModel  [(ngModel)]="updateModel.city" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label>Town</label>
+                    <input type="text" name="town" ngModel  [(ngModel)]="updateModel.town" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                  <div class="form-group">
+                    <label>Full Address</label>
+                    <input type="text" name="fullAddress" ngModel  [(ngModel)]="updateModel.fullAddress" class="form-control" placeholder="Enter Last Name">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-dark w-100" (click)="update(updatePatientForm)">Save</button>
+                </div>
+          </form>
+        </div>
+      </div>

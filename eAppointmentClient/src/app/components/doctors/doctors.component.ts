@@ -7,15 +7,17 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { FormValidateDirective } from 'form-validate-angular';
 import { ResultModel } from '../../models/result.model';
 import { SwalService } from '../../services/swal.service';
+import { DoctorPipe } from '../../pipes/doctor.pipe';
 
 @Component({
   selector: 'app-doctors',
-  imports: [RouterLink, FormsModule, FormValidateDirective],
+  imports: [RouterLink, FormsModule, FormValidateDirective, DoctorPipe],
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.css',
 })
 export class DoctorsComponent implements OnInit {
   doctors: DoctorModel[] = [];
+  search : string = "";
   departments : DepartmentModel[] = departments;
   createModel : DoctorModel = new DoctorModel();
   updateModel : DoctorModel = new DoctorModel();

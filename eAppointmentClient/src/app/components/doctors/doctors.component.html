@@ -26,6 +26,7 @@
         </div>
         <div class="col-xl-3 col-lg-4 col-md-6 col sm-12 col-12">
           <input
+          [(ngModel)]="search"
             type="search"
             class="form-control"
             placeholder="Search Doctor.."
@@ -45,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of doctors; track $index) {
+        @for (item of doctors | doctor : search; track $index) {
         <tr>
           <td>{{ $index + 1 }}</td>
           <td>{{ item.firstName }} {{ item.lastName }}</td>
