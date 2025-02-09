@@ -93,9 +93,9 @@
                 <div class="form-group">
                     <label>Department</label>
                     <select class="form-control" ngModel name="department" [(ngModel)]="createModel.department" >
-                        <option [ngValue]="null" disabled selected>
-                            Select..
-                          </option>
+                      <option [value]="0" selected>
+                        Select..
+                      </option>
                         @for (item of departments; track $index) {
                         <option [value]="item.value">
                             {{ item.name }}
@@ -134,14 +134,14 @@
                 <div class="form-group">
                     <label>Department</label>
                     <select class="form-control" ngModel name="department" [(ngModel)]="updateModel.department" >
-                        <option [ngValue]="null" disabled selected>
-                            Select..
-                          </option>
-                        @for (item of departments; track $index) {
-                        <option [value]="item.value">
-                            {{ item.name }}
-                        </option>
-                        }
+                      <option [ngValue]="null" disabled>
+                        Select..
+                      </option>
+                      @for (item of departments; track $index) {
+                      <option [ngValue]="item.value">
+                        {{ item.name }}
+                      </option>
+                      }
                     </select>
                 </div>
               </div>

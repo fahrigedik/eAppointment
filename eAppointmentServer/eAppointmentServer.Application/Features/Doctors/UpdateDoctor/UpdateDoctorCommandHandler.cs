@@ -13,7 +13,7 @@ internal sealed class UpdateDoctorCommandHandler(
     IMapper mapper) : IRequestHandler<UpdateDoctorCommand, Result<string>>
 {
     public async Task<Result<string>> Handle(UpdateDoctorCommand request, CancellationToken cancellationToken)
-    {
+        {
         Doctor? doctor =
             await doctorRepository.GetByExpressionWithTrackingAsync(p => p.Id == request.Id, cancellationToken);
 
