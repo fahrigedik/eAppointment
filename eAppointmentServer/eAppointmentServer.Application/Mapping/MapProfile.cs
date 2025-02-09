@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using eAppointmentServer.Application.Features.Doctors.CreateDoctor;
 using eAppointmentServer.Application.Features.Doctors.UpdateDoctor;
+using eAppointmentServer.Application.Features.Patients.CreatePatient;
+using eAppointmentServer.Application.Features.Patients.UpdatePatient;
 using eAppointmentServer.Domain.Entities;
 using eAppointmentServer.Domain.Enums;
 
@@ -24,6 +26,10 @@ namespace eAppointmentServer.Application.Mapping
             {
                 options.MapFrom(command => DepartmentEnum.FromValue(command.Department));
             });
+
+            CreateMap<CreatePatientCommand, Patient>();
+
+            CreateMap<UpdatePatientCommand, Patient>();
         }
     }
 }

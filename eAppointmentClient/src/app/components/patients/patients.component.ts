@@ -47,7 +47,7 @@ export class PatientsComponent {
   
     delete(id : string)
     {
-      this.swal.callSwal('Are you sure?','Do you want to delete this doctor?','Yes',() => {
+      this.swal.callSwal('Are you sure?','Do you want to delete this patient?','Yes',() => {
         this.http.post<ResultModel<string>>('Patients/DeletePatient', {id : id}, (res) => {
           this.swal.callToast('Patient is deleted','success');
           this.getAll();
